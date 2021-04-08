@@ -1,8 +1,10 @@
 "use strict"
 
-let dropdownMenuEl = document.querySelector('.dropdown-menu')
-let dropdownEl = document.querySelector('.dropdown-toggle')
 let actualLiEl = document.querySelector('.active');
+let dropdownEl = document.querySelector('.dropdown-toggle')
+let dropdownMenuEl = document.querySelector('.dropdown-menu')
+let firstThEl = document.querySelector('.changing-name');
+let secondThEl = document.querySelector('.changing-rate');
 
 let urlAdress = " https://v6.exchangerate-api.com/v6/40d62e170c028be72b38b1b1/latest/USD";
 
@@ -11,14 +13,16 @@ function apiUpdate(url){
     .then(response => response.json())
     .then(currency => {
         console.log(currency)
-        dropdownEl.textContent = currency.base_code;  
-        
+        dropdownEl.textContent = currency.base_code; 
+        firstThEl.textContent = currency.base_code + ' Exchange rate'
+        secondThEl.textContent =  currency.base_code;
+        fillTable(currency)
   })
 }
 
 apiUpdate(urlAdress);
 
-  dropdownMenuEl.addEventListener('click', function(event){
+dropdownMenuEl.addEventListener('click', function(event){
     actualLiEl.classList.remove('active')
     actualLiEl = event.target
     actualLiEl.classList.add('active')
@@ -29,3 +33,11 @@ apiUpdate(urlAdress);
     apiUpdate(urlAdress)
     
 })
+
+function fillTable(currency){
+    // console.log(">>>")
+    // console.log(currency.conversion_rates.BYN)
+    for( var cur in currency.conversion_rates){
+        alert( cur + ' ')
+    }
+}

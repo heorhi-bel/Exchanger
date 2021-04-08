@@ -35,9 +35,14 @@ dropdownMenuEl.addEventListener('click', function(event){
 })
 
 function fillTable(currency){
-    // console.log(">>>")
-    // console.log(currency.conversion_rates.BYN)
-    for( var cur in currency.conversion_rates){
-        alert( cur + ' ')
+    let currenciesMap = new Map(Object.entries(currency.conversion_rates))
+    for( var cur of currenciesMap){
+        let trEl = document.body.querySelector('table>tbody>tr:last-child')
+        trEl.insertAdjacentElement('afterEnd', `
+            <tr>
+                <th scope="row">${cur[0]}</th>
+                <td> ${cur[1]} </tr>
+            </tr>
+        `)
     }
 }

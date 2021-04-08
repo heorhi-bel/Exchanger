@@ -19,7 +19,6 @@ function setNameOfDropdown(currency){
     
     let dropdownMenuEl = document.querySelector('.dropdown-menu')
     dropdownMenuEl.addEventListener('click', function(event){
-        console.log('click')
         actualLiEl.classList.remove('active')
         actualLiEl = event.target
         actualLiEl.classList.add('active')
@@ -27,5 +26,6 @@ function setNameOfDropdown(currency){
 
         urlAdress = urlAdress.slice(0, 68) + event.target.textContent.trim()
         console.log(urlAdress)
+
     })
 }

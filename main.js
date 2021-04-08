@@ -23,6 +23,9 @@ function setNameOfDropdown(currency){
         actualLiEl.classList.remove('active')
         actualLiEl = event.target
         actualLiEl.classList.add('active')
+        dropdownEl.textContent = event.target.textContent.trim()
 
+        urlAdress = urlAdress.slice(0, 68) + event.target.textContent.trim()
+        console.log(urlAdress)
     })
 }

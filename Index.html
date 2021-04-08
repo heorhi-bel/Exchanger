@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,36 +10,43 @@
     <title>Exchanger JS</title>
 </head>
 <body>
-    <div class="container">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>
+    <div class="container-lg">
+        <div class="justify-content-center">
+            <h1 class="fs-1 fw-bold"> Exchange Rates</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">USD Exchange rate</th>
-                </tr>
-            </thead>
-        </table>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th scope="row">USD</th>
-                    <td> 1,0000000 </tr>
-                </tr>
-            </tbody>
-        </table>
+            <!-- Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <!-- Table with currency -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">USD Exchange rate</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">USD</th>
+                        <td> 1,0000000 </tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="/main.js"></script>
 </body>
 </html>

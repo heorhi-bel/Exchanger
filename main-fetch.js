@@ -5,6 +5,7 @@ let dropdownEl = document.querySelector('.dropdown-toggle')
 let dropdownMenuEl = document.querySelector('.dropdown-menu')
 let firstThEl = document.querySelector('.changing-name');
 let tbodyEl = document.body.querySelector('table>tbody')
+let theadEl = document.body.querySelector('table>thead')
 let spinnerEl = document.body.querySelector('.spinner-border')
 
 let urlAdress = " https://v6.exchangerate-api.com/v6/40d62e170c028be72b38b1b1/latest/USD";
@@ -26,7 +27,9 @@ function apiUpdate(url){
         }
       )
     .then(currency => {
-        spinnerRemove();
+        setTimeout(() => {
+            spinnerRemove();
+        }, 100); 
         console.log(currency)
         dropdownEl.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
@@ -64,10 +67,12 @@ function fillTable(currency){
 async function spinnerRemove(){
     spinnerEl.classList.add('visually-hidden');
     tbodyEl.classList.remove('visually-hidden')
+    theadEl.classList.remove('visually-hidden')
 }
 async function spinnerAdd(){
     spinnerEl.classList.remove('visually-hidden');
     tbodyEl.classList.add('visually-hidden')
+    theadEl.classList.add('visually-hidden')
 }
 
 // <- main functionality ->

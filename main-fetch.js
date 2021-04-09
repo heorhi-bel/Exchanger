@@ -4,7 +4,6 @@ let actualLiEl = document.querySelector('.active');
 let dropdownEl = document.querySelector('.dropdown-toggle')
 let dropdownMenuEl = document.querySelector('.dropdown-menu')
 let firstThEl = document.querySelector('.changing-name');
-let secondThEl = document.querySelector('.changing-rate');
 
 let urlAdress = " https://v6.exchangerate-api.com/v6/40d62e170c028be72b38b1b1/latest/USD";
 
@@ -15,7 +14,6 @@ function apiUpdate(url){
         console.log(currency)
         dropdownEl.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
-        secondThEl.textContent =  currency.base_code;
         fillTable(currency)
   })
 }

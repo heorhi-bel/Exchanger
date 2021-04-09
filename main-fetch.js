@@ -4,10 +4,13 @@ let actualLiEl = document.querySelector('.active');
 let dropdownEl = document.querySelector('.dropdown-toggle')
 let dropdownMenuEl = document.querySelector('.dropdown-menu')
 let firstThEl = document.querySelector('.changing-name');
+let tbodyEl = document.body.querySelector('table>tbody')
+let spinnerEl = document.body.querySelector('.spinner-border')
 
 let urlAdress = " https://v6.exchangerate-api.com/v6/40d62e170c028be72b38b1b1/latest/USD";
 
 function apiUpdate(url){
+    spinnerAdd();
     fetch(url)
     .then(
         successResponse => {
@@ -23,6 +26,7 @@ function apiUpdate(url){
         }
       )
     .then(currency => {
+        spinnerRemove();
         console.log(currency)
         dropdownEl.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
@@ -32,7 +36,6 @@ function apiUpdate(url){
 
 
 function fillTable(currency){
-    let tbodyEl = document.body.querySelector('table>tbody')
     let i = 0;
     // Cleaning tbody
     tbodyEl.innerHTML = ' ';
@@ -58,6 +61,14 @@ function fillTable(currency){
     }
 }
 
+async function spinnerRemove(){
+    spinnerEl.classList.add('visually-hidden');
+    tbodyEl.classList.remove('visually-hidden')
+}
+async function spinnerAdd(){
+    spinnerEl.classList.remove('visually-hidden');
+    tbodyEl.classList.add('visually-hidden')
+}
 
 // <- main functionality ->
 // <- main functionality ->

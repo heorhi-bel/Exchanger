@@ -35,7 +35,7 @@ function apiUpdate(url){
             spinnerRemove();
         }, 100); 
         // <--- --->
-        El.textContent = currency.base_code; 
+        dropdownEl.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
         fillTable(currency)
   })

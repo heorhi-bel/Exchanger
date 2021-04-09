@@ -9,7 +9,19 @@ let urlAdress = " https://v6.exchangerate-api.com/v6/40d62e170c028be72b38b1b1/la
 
 function apiUpdate(url){
     fetch(url)
-    .then(response => response.json())
+    .then(
+        successResponse => {
+          if (successResponse.status != 200) {
+              alert('Error of response!')
+            return null;
+          } else {
+                return successResponse.json();
+          }
+        },
+        failResponse => {
+          return null;
+        }
+      )
     .then(currency => {
         console.log(currency)
         dropdownEl.textContent = currency.base_code; 
@@ -17,6 +29,7 @@ function apiUpdate(url){
         fillTable(currency)
   })
 }
+
 
 function fillTable(currency){
     let tbodyEl = document.body.querySelector('table>tbody')
@@ -26,12 +39,12 @@ function fillTable(currency){
     // Create Map with Object's and fill table in the tbody
     let currenciesMap = new Map(Object.entries(currency.conversion_rates))
     for( var cur of currenciesMap){
-
+        // Condition for every 12'th element adding in the table
         if(!(i % 12 == 0)){
             i++
             continue;
         }
-
+        //Adding new elemnt of conversion in the table
         tbodyEl.insertAdjacentHTML('beforeEnd', `
             <tr>                
                 <th scope="row"> ${cur[0]} </th>    
@@ -46,6 +59,8 @@ function fillTable(currency){
 }
 
 
+// <- main functionality ->
+// <- main functionality ->
 // <- main functionality ->
 apiUpdate(urlAdress);
 

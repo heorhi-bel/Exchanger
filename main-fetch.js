@@ -20,6 +20,24 @@ function apiUpdate(url){
   })
 }
 
+function fillTable(currency){
+    let tbodyEl = document.body.querySelector('table>tbody')
+    // Cleaning tbody
+    tbodyEl.innerHTML = ' ';
+    // Create Map with Object's and fill table in the tbody
+    let currenciesMap = new Map(Object.entries(currency.conversion_rates))
+    for( var cur of currenciesMap){
+        tbodyEl.insertAdjacentHTML('beforeEnd', `
+            <tr>                
+                <th scope="row"> ${cur[0]} </th>    
+                <td> ${cur[1]} </td>            
+            </tr>        
+        `);
+    }
+}
+
+
+
 apiUpdate(urlAdress);
 
 dropdownMenuEl.addEventListener('click', function(event){
@@ -34,15 +52,3 @@ dropdownMenuEl.addEventListener('click', function(event){
     
 })
 
-function fillTable(currency){
-    let currenciesMap = new Map(Object.entries(currency.conversion_rates))
-    for( var cur of currenciesMap){
-        let trEl = document.body.querySelector('table>tbody>tr:last-child')
-        trEl.insertAdjacentHTML('afterEnd', `
-            <tr>                
-                <th scope="row"> ${cur[0]} </th>    
-                <td> ${cur[1]} </td>            
-            </tr>        
-        `);
-    }
-}

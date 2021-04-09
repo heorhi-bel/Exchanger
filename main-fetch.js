@@ -37,7 +37,7 @@ function fillTable(currency){
 }
 
 
-
+// <- main functionality ->
 apiUpdate(urlAdress);
 
 dropdownMenuEl.addEventListener('click', function(event){

@@ -25,8 +25,9 @@ function apiUpdate(url){
         failResponse => {
           return null;
         }
-      )
+    )
     .then(currency => {
+        sessionStorage.setItem('currencyChoice', url);
         setTimeout(() => {
             spinnerRemove();
         }, 100); 
@@ -78,7 +79,13 @@ async function spinnerAdd(){
 // <- main functionality ->
 // <- main functionality ->
 // <- main functionality ->
-apiUpdate(urlAdress);
+// sessionStorage.setItem('key-test-Heorhi', 123)
+// alert(sessionStorage.key(0))
+if(sessionStorage.key(0) != null && sessionStorage.key(1) != null ){
+    apiUpdate( sessionStorage.getItem('currencyChoice'))
+}else{ 
+    apiUpdate(urlAdress); 
+}
 
 dropdownMenuEl.addEventListener('click', function(event){
     actualLiEl.classList.remove('active')

@@ -7,6 +7,7 @@ let firstThEl = document.querySelector('.changing-name');
 let tbodyEl = document.body.querySelector('table>tbody')
 let theadEl = document.body.querySelector('table>thead')
 let spinnerEl = document.body.querySelector('.spinner-border')
+let alertEl = document.body.querySelector('.alert')
 
 let urlAdress = " https://v6.exchangerate-api.com/v6/40d62e170c028be72b38b1b1/latest/USD";
 
@@ -16,7 +17,7 @@ function apiUpdate(url){
     .then(
         successResponse => {
           if (successResponse.status != 200) {
-              alert('Error of response!')
+            alertEl.classList.remove('visually-hidden')
             return null;
           } else {
                 return successResponse.json();
@@ -27,12 +28,14 @@ function apiUpdate(url){
         }
     )
     .then(currency => {
+        // <--- RENEW session storage --->
         sessionStorage.setItem('currencyChoice', url);
+        // <--- SPINNER REMOVER WITH EASY DELAY --->
         setTimeout(() => {
             spinnerRemove();
         }, 100); 
-        console.log(currency)
-        dropdownEl.textContent = currency.base_code; 
+        // <--- --->
+        El.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
         fillTable(currency)
   })
@@ -94,7 +97,6 @@ dropdownMenuEl.addEventListener('click', function(event){
     dropdownEl.textContent = event.target.textContent.trim()
 
     urlAdress = urlAdress.slice(0, 68) + event.target.textContent.trim()
-    console.log(urlAdress)
     apiUpdate(urlAdress)
     
 })

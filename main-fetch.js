@@ -38,11 +38,11 @@ function fillTable(currency){
     let currenciesMap = new Map(Object.entries(currency.conversion_rates))
     for( var cur of currenciesMap){
         let trEl = document.body.querySelector('table>tbody>tr:last-child')
-        trEl.insertAdjacentElement('afterEnd', `
-            <tr>
-                <th scope="row">${cur[0]}</th>
-                <td> ${cur[1]} </tr>
-            </tr>
-        `)
+        trEl.insertAdjacentHTML('afterEnd', `
+            <tr>                
+                <th scope="row"> ${cur[0]} </th>    
+                <td> ${cur[1]} </td>            
+            </tr>        
+        `);
     }
 }

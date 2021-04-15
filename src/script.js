@@ -16,20 +16,19 @@ document.addEventListener('DOMContentLoaded', function(){
     let spinnerAdd = require("./parts/spinnerAdd.js"),
         spinnerRemove = require("./parts/spinnerRemove.js"),
         tableFill = require("./parts/tableFill.js"),
-        updating = require("./parts/updating");
+        updating = require("./parts/updating.js");
 
     spinnerAdd();
     spinnerRemove();
-    tableFill();
     updating(urlAdress);
 
  
     // <- main functionality ->
     // <- main functionality ->
     if(sessionStorage.key(0) != null && sessionStorage.key(1) != null ){
-        apiUpdate( sessionStorage.getItem('currencyChoice'))
+        updating( sessionStorage.getItem('currencyChoice'))
     }else{ 
-        apiUpdate(urlAdress); 
+        updating(urlAdress); 
     }
 
     dropdownMenuEl.addEventListener('click', function(event){
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function(){
         dropdownEl.textContent = event.target.textContent.trim()
 
         urlAdress = urlAdress.slice(0, 68) + event.target.textContent.trim()
-        apiUpdate(urlAdress)
+        updating(urlAdress)
         
     })
 })

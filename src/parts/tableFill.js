@@ -1,4 +1,6 @@
-function fillTable(currency){
+function tableFill(currency){
+    let tbodyEl = document.body.querySelector('table>tbody')
+
     let i = 0;
     // Cleaning tbody
     tbodyEl.innerHTML = ' ';
@@ -24,4 +26,4 @@ function fillTable(currency){
     }
 }
 
-module.exports = fillTable;
+module.exports = tableFill;

@@ -1,4 +1,12 @@
-function apiUpdate(url){
+function updating(url){
+    let dropdownEl = document.querySelector('.dropdown-toggle'),
+        firstThEl = document.querySelector('.changing-name'),
+        alertEl = document.body.querySelector('.alert'),
+
+        tableFill = require("./tableFill"),
+        spinnerAdd = require("./spinnerAdd"),
+        spinnerRemove = require("./spinnerRemove.js")
+
     spinnerAdd();
     fetch(url)
     .then(
@@ -24,8 +32,8 @@ function apiUpdate(url){
         // <--- --->
         dropdownEl.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
-        fillTable(currency)
+        tableFill(currency)
     })
 }
 
-module.exports = apiUpdate;
+module.exports = updating;

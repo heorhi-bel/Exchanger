@@ -8,6 +8,10 @@
 /***/ ((module) => {
 
 async function spinnerAdd(){
+    let tbodyEl = document.body.querySelector('table>tbody')
+    let theadEl = document.body.querySelector('table>thead')
+    let spinnerEl = document.body.querySelector('.spinner-border')
+
     spinnerEl.classList.remove('visually-hidden');
     tbodyEl.classList.add('visually-hidden')
     theadEl.classList.add('visually-hidden')
@@ -24,6 +28,10 @@ module.exports = spinnerAdd;
 /***/ ((module) => {
 
 async function spinnerRemove(){
+    let tbodyEl = document.body.querySelector('table>tbody')
+    let theadEl = document.body.querySelector('table>thead')
+    let spinnerEl = document.body.querySelector('.spinner-border')
+    
     spinnerEl.classList.add('visually-hidden');
     tbodyEl.classList.remove('visually-hidden')
     theadEl.classList.remove('visually-hidden')
@@ -39,7 +47,9 @@ module.exports = spinnerRemove;
   \********************************/
 /***/ ((module) => {
 
-function fillTable(currency){
+function tableFill(currency){
+    let tbodyEl = document.body.querySelector('table>tbody')
+
     let i = 0;
     // Cleaning tbody
     tbodyEl.innerHTML = ' ';
@@ -65,7 +75,7 @@ function fillTable(currency){
     }
 }
 
-module.exports = fillTable;
+module.exports = tableFill;
 
 /***/ }),
 
@@ -73,9 +83,17 @@ module.exports = fillTable;
 /*!*******************************!*\
   !*** ./src/parts/updating.js ***!
   \*******************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-function apiUpdate(url){
+function updating(url){
+    let dropdownEl = document.querySelector('.dropdown-toggle'),
+        firstThEl = document.querySelector('.changing-name'),
+        alertEl = document.body.querySelector('.alert'),
+
+        tableFill = __webpack_require__(/*! ./tableFill */ "./src/parts/tableFill.js"),
+        spinnerAdd = __webpack_require__(/*! ./spinnerAdd */ "./src/parts/spinnerAdd.js"),
+        spinnerRemove = __webpack_require__(/*! ./spinnerRemove.js */ "./src/parts/spinnerRemove.js")
+
     spinnerAdd();
     fetch(url)
     .then(
@@ -101,11 +119,11 @@ function apiUpdate(url){
         // <--- --->
         dropdownEl.textContent = currency.base_code; 
         firstThEl.textContent = currency.base_code + ' Exchange rate'
-        fillTable(currency)
+        tableFill(currency)
     })
 }
 
-module.exports = apiUpdate;
+module.exports = updating;
 
 /***/ })
 
@@ -160,20 +178,19 @@ document.addEventListener('DOMContentLoaded', function(){
     let spinnerAdd = __webpack_require__(/*! ./parts/spinnerAdd.js */ "./src/parts/spinnerAdd.js"),
         spinnerRemove = __webpack_require__(/*! ./parts/spinnerRemove.js */ "./src/parts/spinnerRemove.js"),
         tableFill = __webpack_require__(/*! ./parts/tableFill.js */ "./src/parts/tableFill.js"),
-        updating = __webpack_require__(/*! ./parts/updating */ "./src/parts/updating.js");
+        updating = __webpack_require__(/*! ./parts/updating.js */ "./src/parts/updating.js");
 
     spinnerAdd();
     spinnerRemove();
-    tableFill();
     updating(urlAdress);
 
  
     // <- main functionality ->
     // <- main functionality ->
     if(sessionStorage.key(0) != null && sessionStorage.key(1) != null ){
-        apiUpdate( sessionStorage.getItem('currencyChoice'))
+        updating( sessionStorage.getItem('currencyChoice'))
     }else{ 
-        apiUpdate(urlAdress); 
+        updating(urlAdress); 
     }
 
     dropdownMenuEl.addEventListener('click', function(event){
@@ -183,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function(){
         dropdownEl.textContent = event.target.textContent.trim()
 
         urlAdress = urlAdress.slice(0, 68) + event.target.textContent.trim()
-        apiUpdate(urlAdress)
+        updating(urlAdress)
         
     })
 })
